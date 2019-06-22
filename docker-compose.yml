@@ -1,0 +1,39 @@
+version: "2"
+services:
+  
+  webserver-api:
+    build: ./docker/images/webserver
+    container_name: ff-webserver      
+    volumes:
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+      - ./:/usr/share/nginx/html
+    ports:
+      - "8000:80"
+    links:
+      - php     
+      - db
+      
+  php:
+    build: ./docker/images/php
+    container_name: ff-php    
+    volumes:      
+      - ./:/usr/share/nginx/html         
+
+  db:
+    image: mysql:5.7
+    container_name: ff-mysql  
+    volumes:
+      - "./docker/.data/db:/var/lib/mysql"
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: familyfinances
+      MYSQL_USER: root        
+
+
+
+     
+        
+
