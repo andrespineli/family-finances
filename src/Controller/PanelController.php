@@ -15,7 +15,9 @@ class PanelController extends Controller
      */
     public function index()
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');       
-        return $this->render('panel/index.html.twig');
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        return $this->render('panel/index.html.twig', [
+            'user' => $this->getUser()
+        ]);
     }
 }
