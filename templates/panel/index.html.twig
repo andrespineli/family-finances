@@ -1,6 +1,18 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Panel{% endblock %}
+
 {% block body %}
 <h1>Welcome {{ user.name }} to dash!</h1>
 <hr class="my-4"> 
+<div class="row">
+    <div class="col-sm-8">
+        
+    </div>   
+    <div class="col-sm-4 text-right">
+        <a class="btn btn-sm btn-secondary" href="{{ path('join_family') }}">Join into a family!</a>
+        <a class="btn btn-sm btn-info" href="{{ path('new_family') }}">Create your family!</a>
+    </div>
+</div>
+
 {% endblock %}

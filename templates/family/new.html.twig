@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Family{% endblock %}
+
+{% block body %}
+<h1>Create your family</h1>
+<hr class="my-4"> 
+
+{{ form_start(form, {"attr": {"novalidate": "novalidate"}}) }}
+
+<div class="row">   
+    <div class="col-md-12">
+       <div class="form-group">
+            <div class="label">{{ form_label(form.name) }}</div>
+            {{ form_widget(form.name) }}
+            {{ form_errors(form.name) }}
+       </div>
+    </div>
+</div>
+
+{{ form_end(form) }}
+
+{% endblock %}

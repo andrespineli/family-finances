@@ -16,6 +16,9 @@ class PanelController extends Controller
     public function index()
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+       // $form = $this->createForm(RegistrationFormType::class, $user);
+
         return $this->render('panel/index.html.twig', [
             'user' => $this->getUser()
         ]);
