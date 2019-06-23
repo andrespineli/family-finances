@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome!{% endblock %}
+
+{% block body %}
+<h1>Welcome to your financial control</h1>
+<hr class="my-4">
+<div class="row">
+    <div class="col-sm-8">
+
+    </div>
+    <div class="col-sm-4 text-right">
+        <a class="btn btn-sm btn-secondary" href="{{ path('app_login') }}">LogIn</a>
+        <a class="btn btn-sm btn-info" href="{{ path('app_register') }}">Register</a>
+    </div>
+</div>
+<div class="jumbotron mt-3">
+    <div class="row">
+        <div class="col-sm-3 text-center">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-title">
+                        SignUp
+                    </h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 text-center">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-title">
+                        Create your family
+                    </h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 text-center">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-title">
+                        Register your debts
+                    </h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 text-center">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-title">
+                        Get monthly totals
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 text-center">
+        <h3>Have all the financial control of your family.</h3>
+
+    </div>
+</div>
+<div class="fixed-bottom mt-5 mb-3 text-center">
+    Family Finances | www.ffinances.com
+</div>
+{% endblock %}
