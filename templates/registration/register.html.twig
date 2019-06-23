@@ -3,12 +3,41 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword) }}
+<h1>Register</h1>
 
-        <button class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+{{ form_start(registrationForm, {"attr": {"novalidate": "novalidate"}}) }}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <div class="label">{{ form_label(registrationForm.name) }}</div>
+            {{ form_widget(registrationForm.name) }}
+            {{ form_errors(registrationForm.name) }}
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <div class="label">{{ form_label(registrationForm.email) }}</div>
+            {{ form_widget(registrationForm.email) }}
+            {{ form_errors(registrationForm.email) }}
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <div class="label">{{ form_label(registrationForm.plainPassword) }}</div>
+            {{ form_widget(registrationForm.plainPassword) }}
+            {{ form_errors(registrationForm.plainPassword) }}
+        </div>
+    </div>
+</div>
+
+{{ form_end(registrationForm) }}
+ 
 {% endblock %}
