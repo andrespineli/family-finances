@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\Common\Collections\ArrayCollection;
+use App\Entity\Family;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -47,18 +47,10 @@ class User implements UserInterface
     private $password;
 
     /**     
-     * @ORM\ManyToMany(targetEntity="Family")
-     * @ORM\JoinTable(name="user_families",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="family_id", referencedColumnName="id")}
-     *      )
+     * @ORM\ManyToMany(targetEntity="Family", mappedBy="users")
+     * @var Family[]
      */
     private $families;
-
-    public function __construct()
-    {
-        $this->families = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -84,7 +76,17 @@ class User implements UserInterface
     public function setEmail(string $email): self
     {
         $this->email = $email;
+        return $this;
+    }
 
+    public function getFamilies()
+    {
+        return $this->families;
+    }
+
+    public function addFamily(Family $family): self
+    {
+        $this->families[] = $family;
         return $this;
     }
 

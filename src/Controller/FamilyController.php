@@ -7,6 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Family;
 use App\Form\NewFamilyFormType;
 use Symfony\Component\HttpFoundation\Request;
+use App\Form\AddMemberFormType;
 
 class FamilyController extends AbstractController
 {
@@ -16,8 +17,10 @@ class FamilyController extends AbstractController
     public function new(Request $request)
     {
         $family = new Family;
+        $family->addUser($this->getUser());
+        //print_r($family->getName());
         $form = $this->createForm(NewFamilyFormType::class, $family);
-        $form->handleRequest($request);       
+        $form->handleRequest($request);               
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -31,12 +34,18 @@ class FamilyController extends AbstractController
     }
 
     /**
-     * @Route("/family/join", name="join_family")
+     * @Route("/family/add", name="add_member")
      */
-    public function join()
+    public function add(Request $request)
     {
-        return $this->render('family/join.html.twig', [
-            'controller_name' => 'FamilyController',
+        $user = $this->getUser();
+
+        $form = $this->createForm(AddMemberFormType::class);
+        $form->handleRequest($request);
+        
+        return $this->render('family/add.html.twig', [
+            'families' => $user->getFamilies(),
+            'form' => $form->createView()
         ]);
     }
 }

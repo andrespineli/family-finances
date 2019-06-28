@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Members{% endblock %}
+
+{% block body %}
+<h1>Add member in your family!</h1>
+<hr class="my-4"> 
+
+{{ form_start(form, {"attr": {"novalidate": "novalidate"}}) }}
+
+<div class="row">   
+    <div class="col-md-12">
+        <div class="form-group">
+            <div class="label">Your families.</div>
+            <select name="family" class="form-control">
+                {% for family in families %}
+                    <option value="{{family.id}}">{{family.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+       <div class="form-group">
+            <div class="label">{{ form_label(form.email) }}</div>
+            {{ form_widget(form.email) }}
+            {{ form_errors(form.email) }}
+       </div>
+    </div>
+</div>
+
+{{ form_end(form) }}
+
+{% endblock %}
